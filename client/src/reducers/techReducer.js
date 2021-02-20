@@ -1,0 +1,48 @@
+import {
+  SET_LOADING,
+  GET_TECHS,
+  TECHS_ERROR,
+  ADD_TECH,
+  DELETE_TECH
+} from '../actions/types';
+
+const techReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_TECHS:
+      return {
+        ...state,
+        technicians: action.payload,
+        loading: false
+      };
+    case ADD_TECH:
+      return {
+        ...state,
+        technicians: [...state.technicians, action.payload],
+        loading: false
+      };
+    case DELETE_TECH:
+      return {
+        ...state,
+        technicians: state.technicians.filter(
+          tech => tech.id !== action.payload
+        ),
+        loading: false
+      };
+    case TECHS_ERROR:
+      console.log(action.payload);
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
+    default:
+      return state;
+  }
+};
+
+export default techReducer;
