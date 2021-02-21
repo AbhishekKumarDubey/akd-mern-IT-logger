@@ -30,7 +30,7 @@ export const getTechs = () => async dispatch => {
 // Add new technician
 export const addTech = tech => async dispatch => {
   try {
-    setLoading();
+    dispatch(setLoading());
 
     const res = await fetch('/techs', {
       method: 'POST',
@@ -56,7 +56,7 @@ export const addTech = tech => async dispatch => {
 // Delete technician
 export const deleteTech = id => async dispatch => {
   try {
-    setLoading();
+    dispatch(setLoading());
 
     await fetch(`/techs/${id}`, {
       method: 'DELETE'

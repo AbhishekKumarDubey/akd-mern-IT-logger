@@ -15,7 +15,7 @@ export const setLoading = () => ({ type: SET_LOADING });
 // Get logs from server
 export const getLogs = () => async dispatch => {
   try {
-    setLoading();
+    dispatch(setLoading());
 
     const res = await fetch('/logs');
     const data = await res.json();
@@ -35,7 +35,7 @@ export const getLogs = () => async dispatch => {
 // Add new log
 export const addLog = log => async dispatch => {
   try {
-    setLoading();
+    dispatch(setLoading());
 
     const res = await fetch('/logs', {
       method: 'POST',
@@ -62,7 +62,7 @@ export const addLog = log => async dispatch => {
 // Update log
 export const updateLog = log => async dispatch => {
   try {
-    setLoading();
+    dispatch(setLoading());
 
     const res = await fetch(`/logs/${log.id}`, {
       method: 'PUT',
@@ -88,11 +88,11 @@ export const updateLog = log => async dispatch => {
 // Search logs
 export const searchLogs = text => async dispatch => {
   try {
-    setLoading();
+    dispatch(setLoading());
 
     const res = await fetch(`/logs?q=${text}`);
     const data = await res.json();
-    console.log(data);
+
     dispatch({
       type: SEARCH_LOGS,
       payload: data
@@ -108,7 +108,7 @@ export const searchLogs = text => async dispatch => {
 // Delete log
 export const deleteLog = id => async dispatch => {
   try {
-    setLoading();
+    dispatch(setLoading());
 
     await fetch(`/logs/${id}`, {
       method: 'DELETE'
